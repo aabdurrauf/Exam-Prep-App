@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="150.0" prefWidth="110.0" style="-fx-background-color: #C6AC8F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalstudymanagementsystem.ExamPaneController">
+   <children>
+      <Label fx:id="statusLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="49.0" layoutY="4.0" text="In Prep" textAlignment="RIGHT" textFill="#22333b">
+         <font>
+            <Font name="System Bold Italic" size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="examLabel" layoutX="6.0" layoutY="28.0" text="Midterm Fall 2021">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="statusIcon" fitHeight="16.0" fitWidth="18.0" layoutX="86.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../load.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="dateLabel" layoutX="12.0" layoutY="130.0" text="16.01 - 25.01 2023">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
