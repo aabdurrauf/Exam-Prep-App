@@ -1,28 +1,21 @@
 package com.example.finalstudymanagementsystem;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 import java.util.ArrayList;
 
 public class ExamPaneController extends AnchorPane {
-/*
-
-    @FXML
-    Label statusLabel;
-    @FXML
-    ImageView statusIcon;
-    @FXML
-    Label examLabel;
-    @FXML
-    Label dateLabel;
-*/
-
+    private VBox vbox = new VBox();
     private GridPane grid = new GridPane();
     private Label status = new Label();
     private ImageView statusIcon = new ImageView();
@@ -31,20 +24,41 @@ public class ExamPaneController extends AnchorPane {
     private Label descriptionLabel = new Label();
     private HBox hbox = new HBox();
     private ArrayList<Label> courses = new ArrayList<>();
+    private Background bg = new Background(new BackgroundFill(Color.rgb(234, 224, 213),
+            new CornerRadii(10), new Insets(0)));
+    private Font font1 = Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 10);
+    private Font font2 = Font.font("System", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 12);
+    private Font font3 = Font.font("System", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10);
+    private Font font4 = Font.font("System", FontWeight.LIGHT, FontPosture.ITALIC, 10);
 
     ExamPaneController(String examText, String dateText, String descriptionText){
         status.setText("In Prep");
-        statusIcon.setImage(new Image("load.png", 15, 15, true, true));
+        status.setFont(font1);
+        statusIcon.setImage(new Image("load.png", 12, 12, true, true));
         examLabel.setText(examText);
+        examLabel.setFont(font2);
         dateLabel.setText(dateText);
+        dateLabel.setFont(font3);
         descriptionLabel.setText(descriptionText);
+        descriptionLabel.setFont(font4);
         hbox.getChildren().addAll(status, statusIcon);
-        grid.add(hbox, 0,0);
+        hbox.setSpacing(5);
+        hbox.setAlignment(Pos.TOP_RIGHT);
+        /*grid.add(hbox, 0,0);
         grid.add(examLabel, 0, 1);
         grid.add(dateLabel, 0, 2);
         grid.add(descriptionLabel, 0, 3);
+        grid.setBackground(bg);
+        grid.setPadding(new Insets(10));
+        grid.setPrefSize(120, 160);
+        */
+        vbox.getChildren().addAll(hbox, examLabel, dateLabel, descriptionLabel);
+        vbox.setSpacing(2);
+        vbox.setBackground(bg);
+        vbox.setPadding(new Insets(10));
+        vbox.setPrefSize(120, 160);
 
-        getChildren().add(grid);
+        getChildren().add(vbox);
     }
 
     public void setStatus(String statusText){

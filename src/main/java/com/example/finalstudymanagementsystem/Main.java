@@ -28,7 +28,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         BorderPane homePage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home_page.fxml")));
         root.setCenter(homePage);
-        primaryStage.setTitle("Exam Studying Manager");
+        primaryStage.setTitle("Exam Study Manager");
         primaryStage.setScene(new Scene(root));
         primaryStage.getIcons().add(icon);
         primaryStage.show();

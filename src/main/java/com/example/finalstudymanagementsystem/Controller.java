@@ -20,14 +20,20 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
 public class Controller {
     private static final Stage stage = new Stage();
+    private static ArrayList<ExamPaneController> ExamPanesArrayList = new ArrayList<>();
 
     public static Stage getStage() {
         return stage;
+    }
+
+    public static ArrayList<ExamPaneController> getExamPanesArrayList() {
+        return ExamPanesArrayList;
     }
 
     @FXML
@@ -100,10 +106,13 @@ public class Controller {
     }
 
     @FXML
-    private ScrollPane scrollPane;
+    private AnchorPane anchorPane;
     private static GridPane gridPane = new GridPane();
     public void initialize() {
-        scrollPane.setContent(gridPane);
+        gridPane.setVgap(12);
+        gridPane.setHgap(12);
+        gridPane.setPadding(new Insets(10));
+        anchorPane.getChildren().add(gridPane);
     }
 
     public static GridPane getGridPane(){

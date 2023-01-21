@@ -53,7 +53,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="200.0" layoutY="74.0" onDragDetected="#notification" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="196.0" layoutY="74.0" onDragDetected="#notification" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../notif.png" />
                </image>
@@ -72,7 +72,10 @@
    <center>
       <AnchorPane prefHeight="301.0" prefWidth="600.0" style="-fx-background-color: #EAE0D5;" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane fx:id="scrollPane" layoutX="23.0" layoutY="13.0" prefHeight="259.0" prefWidth="554.0" />
+            <ScrollPane layoutX="23.0" layoutY="13.0" prefHeight="259.0" prefWidth="554.0">
+               <content>
+                  <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="539.0" prefHeight="274.0" prefWidth="539.0" style="-fx-background-color: #C6AC8F;" />
+               </content></ScrollPane>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

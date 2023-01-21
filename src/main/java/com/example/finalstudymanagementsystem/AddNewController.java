@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,10 +21,11 @@ public class AddNewController {
     @FXML private DatePicker startDate = new DatePicker();
     @FXML private DatePicker endDate = new DatePicker();
     @FXML private TextField description = new TextField();
-    private static ArrayList<ExamPaneController> examPanes = new ArrayList<>();
+    @FXML private Label warningLabel = new Label();
+
 
     private ObservableList<String> examList = FXCollections.observableArrayList("Final", "Midterm",
-            "Midterm 2", "Language Exam", "Placement Test", "Quiz");
+            "Midterm 2", "Language Test", "Placement Test", "Quiz");
     private ObservableList<String> semesterList = FXCollections.observableArrayList("Fall",
             "Spring", "Winter", "Summer", "Short");
 
@@ -33,22 +35,33 @@ public class AddNewController {
     }
 
     public void addButton(ActionEvent actionEvent) {
-        String examTypeString = examType.getSelectionModel().getSelectedItem();
-        String semesterString = semester.getSelectionModel().getSelectedItem();
-        LocalDate startDateValue = startDate.getValue();
-        StringBuilder startDateString = new StringBuilder(startDateValue.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        LocalDate endDateValue = endDate.getValue();
-        String endDateString = endDateValue.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String descriptionText = description.getText();
+        try {
+            String examTypeString = examType.getSelectionModel().getSelectedItem();
+            String semesterString = semester.getSelectionModel().getSelectedItem();
+            if (examTypeString == null || semesterString == null) {
+                throw new NullPointerException();
+            }
 
-        String examLabel = examTypeString + " " + semesterString + " "
-                + startDateString.substring(startDateString.length()-4, startDateString.length() - 1);
-        String dateText = startDateString.substring(0, startDateString.length() - 5) + "-" +
-                endDateString;
+            LocalDate startDateValue = startDate.getValue();
+            StringBuilder startDateString = new StringBuilder(startDateValue.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            LocalDate endDateValue = endDate.getValue();
+            String endDateString = endDateValue.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            String descriptionText = description.getText();
 
-        ExamPaneController examPane = new ExamPaneController(examLabel, dateText, descriptionText);
-        examPanes.add(examPane);
-        Controller.getGridPane().add(examPane, 0,0);
+            String examLabel = examTypeString + " " + semesterString; // + " '" + startDateString.substring(startDateString.length() - 2, startDateString.length());
+            String dateText = startDateString.substring(0, startDateString.length() - 5) + " - " +
+                    endDateString;
+
+            ExamPaneController examPane = new ExamPaneController(examLabel, dateText, descriptionText);
+            Controller.getExamPanesArrayList().add(examPane);
+
+            Controller.getGridPane().add(examPane, (Controller.getExamPanesArrayList().size() - 1) % 4,
+                    (Controller.getExamPanesArrayList().size()-1) / 4);
+            Controller.getStage().close();
+        }
+        catch (NullPointerException e){
+            warningLabel.setText("Please select the necessary items :)");
+        }
 
 
 
