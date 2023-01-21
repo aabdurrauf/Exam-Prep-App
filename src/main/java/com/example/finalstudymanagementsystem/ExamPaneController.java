@@ -8,6 +8,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
+import java.util.ArrayList;
+
 public class ExamPaneController extends AnchorPane {
 /*
 
@@ -26,18 +28,23 @@ public class ExamPaneController extends AnchorPane {
     private ImageView statusIcon = new ImageView();
     private Label examLabel = new Label();
     private Label dateLabel = new Label();
+    private Label descriptionLabel = new Label();
     private HBox hbox = new HBox();
+    private ArrayList<Label> courses = new ArrayList<>();
 
-    ExamPaneController(String examText, String dateText){
+    ExamPaneController(String examText, String dateText, String descriptionText){
         status.setText("In Prep");
-        statusIcon.setImage(new Image("load.png"));
+        statusIcon.setImage(new Image("load.png", 15, 15, true, true));
         examLabel.setText(examText);
         dateLabel.setText(dateText);
+        descriptionLabel.setText(descriptionText);
         hbox.getChildren().addAll(status, statusIcon);
         grid.add(hbox, 0,0);
         grid.add(examLabel, 0, 1);
         grid.add(dateLabel, 0, 2);
+        grid.add(descriptionLabel, 0, 3);
 
+        getChildren().add(grid);
     }
 
     public void setStatus(String statusText){
