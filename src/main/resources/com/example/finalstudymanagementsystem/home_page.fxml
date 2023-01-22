@@ -61,10 +61,18 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="79.0" layoutX="499.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="studyImage" fitHeight="81.0" fitWidth="79.0" layoutX="499.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../study3.png" />
                </image>
+            </ImageView>
+            <ImageView fitHeight="15.0" fitWidth="55.0" layoutX="476.0" layoutY="80.0" onMouseClicked="#editImage" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../edit.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </children>
       </AnchorPane>

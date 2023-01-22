@@ -57,7 +57,7 @@ public class AddNewController {
 
             Controller.getGridPane().add(examPane, (Controller.getExamPanesArrayList().size() - 1) % 4,
                     (Controller.getExamPanesArrayList().size()-1) / 4);
-            Controller.getStage().close();
+            Controller.getAddNewStage().close();
         }
         catch (NullPointerException e){
             warningLabel.setText("Please select the necessary items :)");
@@ -73,6 +73,6 @@ public class AddNewController {
     }
 
     public void cancelButton(ActionEvent actionEvent) {
-        Controller.getStage().close();
+        Controller.getAddNewStage().close();
     }
 }
