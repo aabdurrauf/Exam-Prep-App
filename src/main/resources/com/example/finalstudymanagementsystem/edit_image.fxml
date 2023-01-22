@@ -12,8 +12,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="346.0" prefWidth="472.0" style="-fx-background-color: #EAE0D5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalstudymanagementsystem.Controller">
+<AnchorPane prefHeight="346.0" prefWidth="472.0" style="-fx-background-color: #EAE0D5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalstudymanagementsystem.EditImageController">
    <children>
+      <Label layoutX="30.0" layoutY="17.0" text="Change Image">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
       <GridPane alignment="CENTER" layoutX="15.0" layoutY="55.0" prefHeight="222.0" prefWidth="442.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -106,10 +111,5 @@
             </Button>
          </children>
       </HBox>
-      <Label layoutX="30.0" layoutY="17.0" text="Change Image">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

@@ -37,7 +37,7 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <Button layoutX="34.0" layoutY="77.0" mnemonicParsing="false" onAction="#addNew" style="-fx-background-color: #D9C5AE;" text="Add New">
+            <Button fx:id="addNewButton" layoutX="34.0" layoutY="77.0" mnemonicParsing="false" onAction="#addNew" style="-fx-background-color: #D9C5AE;" text="Add New">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -45,7 +45,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="114.0" layoutY="77.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #D9C5AE;" text="Delete">
+            <Button fx:id="deleteButton" layoutX="114.0" layoutY="77.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #D9C5AE;" text="Delete">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

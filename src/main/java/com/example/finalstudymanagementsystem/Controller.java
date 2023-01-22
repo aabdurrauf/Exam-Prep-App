@@ -30,17 +30,23 @@ public class Controller {
     private static final Stage editLabelStage = new Stage();
     private static final Stage changeImageStage = new Stage();
     private static ArrayList<ExamPaneController> ExamPanesArrayList = new ArrayList<>();
-    private final ArrayList<Image> studyImages = new ArrayList<>();
-    private int previousImageIndex = 0;
-    private int tempImageIndex = 0;
+
 
     public static Stage getAddNewStage() {
         return addNewStage;
     }
+    public static Stage getChangeImageStage(){
+        return changeImageStage;
+    }
     public static ArrayList<ExamPaneController> getExamPanesArrayList() {
         return ExamPanesArrayList;
     }
-    @FXML ImageView studyImage = new ImageView();
+    @FXML ImageView studyImage;
+
+    public ImageView getStudyImage() {
+        return studyImage;
+    }
+
     private Image image = new Image("study3.png");
 
     @FXML
@@ -111,51 +117,6 @@ public class Controller {
         changeImageStage.setResizable(false);
     }
 
-    public void changeImage0(MouseEvent event) {
-        //studyImage.setImage(studyImages.get(0));
-        image = studyImages.get(0);
-        tempImageIndex = 0;
-    }
-    public void changeImage1(MouseEvent event) {
-        //studyImage.setImage(studyImages.get(1));
-        image = studyImages.get(1);
-        tempImageIndex = 1;
-    }
-    public void changeImage2(MouseEvent event) {
-        studyImage.setImage(studyImages.get(2));
-        tempImageIndex = 2;
-    }
-    public void changeImage3(MouseEvent event) {
-        studyImage.setImage(studyImages.get(3));
-        tempImageIndex = 3;
-    }
-    public void changeImage4(MouseEvent event) {
-        studyImage.setImage(studyImages.get(4));
-        tempImageIndex = 4;
-    }
-    public void changeImage5(MouseEvent event) {
-        studyImage.setImage(studyImages.get(5));
-        tempImageIndex = 5;
-    }
-    public void changeImage6(MouseEvent event) {
-        studyImage.setImage(studyImages.get(6));
-        tempImageIndex = 6;
-    }
-    public void changeImage7(MouseEvent event) {
-        studyImage.setImage(studyImages.get(7));
-        tempImageIndex = 7;
-    }
-
-    public void applyButton(ActionEvent event) {
-        previousImageIndex = tempImageIndex;
-        changeImageStage.close();
-    }
-
-    public void cancelButton(ActionEvent event) {
-        studyImage.setImage(studyImages.get(previousImageIndex));
-        changeImageStage.close();
-    }
-
     public void addNew(ActionEvent actionEvent) throws IOException {
         AnchorPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("add_new.fxml")));
         Image icon = new Image("book (1).png");
@@ -168,24 +129,29 @@ public class Controller {
     }
 
     @FXML
-    private AnchorPane anchorPane = new AnchorPane();
+    private AnchorPane anchorPane;
     private static GridPane gridPane = new GridPane();
-    public void initialize() {
+    @FXML Button addNewButton;
+    @FXML Button deleteButton;
+
+    public void initialize() throws NullPointerException{
         gridPane.setVgap(12);
         gridPane.setHgap(12);
         gridPane.setPadding(new Insets(10));
         anchorPane.getChildren().add(gridPane);
 
-        studyImages.add(new Image("study3.png"));
-        studyImages.add(new Image("exam.png"));
-        studyImages.add(new Image("music-notes.png"));
-        studyImages.add(new Image("book2.png"));
-        studyImages.add(new Image("classroom.png"));
-        studyImages.add(new Image("bioinformatics.png"));
-        studyImages.add(new Image("student.png"));
-        studyImages.add(new Image("desk.png"));
-
-        studyImage.setImage(image);
+        addNewButton.setOnMouseEntered(e -> {
+            addNewButton.setStyle("-fx-background-color:  #C6AC8F");
+        });
+        addNewButton.setOnMouseExited(e -> {
+            addNewButton.setStyle("-fx-background-color:  #D9C5AE");
+        });
+        deleteButton.setOnMouseEntered(e -> {
+            deleteButton.setStyle("-fx-background-color: #C6AC8F");
+        });
+        deleteButton.setOnMouseExited(e -> {
+            deleteButton.setStyle("-fx-background-color: #D9C5AE");
+        });
     }
 
     public static GridPane getGridPane(){
