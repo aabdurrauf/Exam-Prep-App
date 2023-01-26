@@ -41,13 +41,13 @@ public class Controller {
     public static ArrayList<ExamPaneController> getExamPanesArrayList() {
         return ExamPanesArrayList;
     }
+
     @FXML ImageView studyImage;
+    private static Image image = new Image("study3.png");
 
-    public ImageView getStudyImage() {
-        return studyImage;
+    public static void setStudyImage(Image newImage) {
+        image = newImage;
     }
-
-    private Image image = new Image("study3.png");
 
     @FXML
     Label Label1;
@@ -110,6 +110,10 @@ public class Controller {
         AnchorPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("edit_image.fxml")));
         Image icon = new Image("laptop.png");
 
+        // you have to always set the image view after setting a new image
+        image = new Image("desk.png");
+        studyImage.setImage(image);
+
         changeImageStage.setTitle("Change Image");
         changeImageStage.setScene(new Scene(pane));
         changeImageStage.getIcons().add(icon);
@@ -152,6 +156,8 @@ public class Controller {
         deleteButton.setOnMouseExited(e -> {
             deleteButton.setStyle("-fx-background-color: #D9C5AE");
         });
+
+        studyImage.setImage(image);
     }
 
     public static GridPane getGridPane(){
