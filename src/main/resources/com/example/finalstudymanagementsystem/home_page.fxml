@@ -47,7 +47,7 @@
                </cursor>
                <styleClass>
                   <String fx:value="over" />
-                  <String fx:value="color" />
+                  <String fx:value="color-normal-brown" />
                </styleClass>
             </Button>
             <Button fx:id="deleteButton" layoutX="114.0" layoutY="77.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="69.0" stylesheets="@styles.css" text="Delete">
@@ -59,7 +59,7 @@
                </cursor>
                <styleClass>
                   <String fx:value="over" />
-                  <String fx:value="color" />
+                  <String fx:value="color-normal-brown" />
                </styleClass>
             </Button>
             <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="196.0" layoutY="74.0" onDragDetected="#notification" pickOnBounds="true" preserveRatio="true">

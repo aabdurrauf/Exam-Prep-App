@@ -4,18 +4,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class AddNewController {
 
@@ -26,6 +30,13 @@ public class AddNewController {
     @FXML private TextField description = new TextField();
     @FXML private Label warningLabel = new Label();
 
+    private static ArrayList<Exam> exams = new ArrayList<>();
+    public static void addExam(Exam exam){
+        exams.add(exam);
+    }
+    public static ArrayList<Exam> getExams(){
+        return exams;
+    }
 
     private ObservableList<String> examList = FXCollections.observableArrayList("Final", "Midterm",
             "Midterm 2", "Language Test", "Placement Test", "Quiz");
@@ -55,12 +66,28 @@ public class AddNewController {
             String dateText = startDateString.substring(0, startDateString.length() - 5) + " - " +
                     endDateString;
 
+            // create a new Exam object
+            Exam exam = new Exam(examTypeString, semesterString, startDateValue, endDateValue);
+            addExam(exam);
+
             ExamPaneController examPane = new ExamPaneController(examLabel, dateText, descriptionText);
             // set mouse action to the Exam Pane
             examPane.setCursor(Cursor.HAND);
             examPane.setOnMouseClicked(e -> {
                 // the opening new stage or scene will be coded here
                 System.out.println(examLabel + " clicked");
+
+                // testing
+                try {
+                    BorderPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("exam_scene.fxml")));
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(pane));
+                    stage.show();
+                } catch (IOException ex) {
+                    System.out.println("error ");
+                    ex.printStackTrace();
+                }
+                // end of test
             });
             // set effect to the Exam Pane
             DropShadow ds = new DropShadow();

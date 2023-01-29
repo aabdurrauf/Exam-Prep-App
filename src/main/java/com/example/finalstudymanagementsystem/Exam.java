@@ -1,16 +1,17 @@
 package com.example.finalstudymanagementsystem;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Exam {
     private final String examType;
     private final String examSemester;
-    private final Date examDateStart;
-    private final Date examDateEnd;
+    private final LocalDate examDateStart;
+    private final LocalDate examDateEnd;
     private final ArrayList<Course> courses = new ArrayList<>();
 
-    Exam(String examType, String examSemester, Date examDateStart, Date examDateEnd){
+    Exam(String examType, String examSemester, LocalDate examDateStart, LocalDate examDateEnd){
         this.examType = examType;
         this.examSemester = examSemester;
         this.examDateStart = examDateStart;
@@ -23,10 +24,10 @@ public class Exam {
     public String getExamSemester(){
         return examSemester;
     }
-    public Date getExamDateStart() {
+    public LocalDate getExamDateStart() {
         return examDateStart;
     }
-    public Date getExamDateEnd() {
+    public LocalDate getExamDateEnd() {
         return examDateEnd;
     }
     public ArrayList<Course> getCourses(){

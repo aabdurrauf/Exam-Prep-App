@@ -185,7 +185,6 @@ public class Controller {
     @FXML Button deleteButton;
 
     public void initialize(){
-
         try{
             gridPane.setVgap(12);
             gridPane.setHgap(12);
@@ -193,7 +192,7 @@ public class Controller {
             anchorPane.getChildren().add(gridPane);
         }
         catch (NullPointerException e){
-            System.out.println("NullPointerException");
+            //System.out.println("NullPointerException");
         }
     }
 

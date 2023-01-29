@@ -1,14 +1,19 @@
-.white-color{
-    -fx-background-color: #fff;
-}
-
 .transparent{
     -fx-background-color: rgba(0, 0, 0, 0);
 }
 
-.color{
+.color-light-brown{
+    -fx-background-color: #EAE0D5;
+}
+
+.color-normal-brown{
     -fx-background-color: #D9C5AE;
 }
+
+.color-dark-brown{
+    -fx-background-color: #C6AC8F;
+}
+
 .over: hover{
     -fx-background-color: #C6AC8F;
 }
