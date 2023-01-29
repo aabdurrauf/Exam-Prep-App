@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalstudymanagementsystem.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalstudymanagementsystem.Controller">
    <top>
       <AnchorPane prefHeight="113.0" prefWidth="600.0" style="-fx-background-color: #EAE0D5;" BorderPane.alignment="CENTER">
          <children>
@@ -37,21 +38,29 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <Button fx:id="addNewButton" layoutX="34.0" layoutY="77.0" mnemonicParsing="false" onAction="#addNew" style="-fx-background-color: #D9C5AE;" text="Add New">
+            <Button fx:id="addNewButton" layoutX="34.0" layoutY="77.0" mnemonicParsing="false" onAction="#addNew" stylesheets="@styles.css" text="Add New">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <styleClass>
+                  <String fx:value="over" />
+                  <String fx:value="color" />
+               </styleClass>
             </Button>
-            <Button fx:id="deleteButton" layoutX="114.0" layoutY="77.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #D9C5AE;" text="Delete">
+            <Button fx:id="deleteButton" layoutX="114.0" layoutY="77.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="69.0" stylesheets="@styles.css" text="Delete">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <styleClass>
+                  <String fx:value="over" />
+                  <String fx:value="color" />
+               </styleClass>
             </Button>
             <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="196.0" layoutY="74.0" onDragDetected="#notification" pickOnBounds="true" preserveRatio="true">
                <image>

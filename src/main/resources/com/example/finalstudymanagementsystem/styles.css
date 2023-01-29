@@ -1,0 +1,14 @@
+.white-color{
+    -fx-background-color: #fff;
+}
+
+.transparent{
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+.color{
+    -fx-background-color: #D9C5AE;
+}
+.over: hover{
+    -fx-background-color: #C6AC8F;
+}

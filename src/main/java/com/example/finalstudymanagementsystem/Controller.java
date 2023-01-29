@@ -191,19 +191,6 @@ public class Controller {
             gridPane.setHgap(12);
             gridPane.setPadding(new Insets(10));
             anchorPane.getChildren().add(gridPane);
-
-            addNewButton.setOnMouseEntered(e -> {
-                addNewButton.setStyle("-fx-background-color:  #C6AC8F");
-            });
-            addNewButton.setOnMouseExited(e -> {
-                addNewButton.setStyle("-fx-background-color:  #D9C5AE");
-            });
-            deleteButton.setOnMouseEntered(e -> {
-                deleteButton.setStyle("-fx-background-color: #C6AC8F");
-            });
-            deleteButton.setOnMouseExited(e -> {
-                deleteButton.setStyle("-fx-background-color: #D9C5AE");
-            });
         }
         catch (NullPointerException e){
             System.out.println("NullPointerException");
