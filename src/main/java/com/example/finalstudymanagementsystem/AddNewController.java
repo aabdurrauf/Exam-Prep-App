@@ -4,10 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
@@ -52,6 +56,26 @@ public class AddNewController {
                     endDateString;
 
             ExamPaneController examPane = new ExamPaneController(examLabel, dateText, descriptionText);
+            // set mouse action to the Exam Pane
+            examPane.setCursor(Cursor.HAND);
+            examPane.setOnMouseClicked(e -> {
+                // the opening new stage or scene will be coded here
+                System.out.println(examLabel + " clicked");
+            });
+            // set effect to the Exam Pane
+            DropShadow ds = new DropShadow();
+            ds.setHeight(0);
+            ds.setWidth(0);
+            examPane.setEffect(ds);
+            examPane.setOnMouseEntered(e -> {
+                ds.setHeight(15);
+                ds.setWidth(15);
+            });
+            examPane.setOnMouseExited(e -> {
+                ds.setHeight(0);
+                ds.setWidth(0);
+            });
+
             Controller.getExamPanesArrayList().add(examPane);
 
             Controller.getGridPane().add(examPane, (Controller.getExamPanesArrayList().size() - 1) % 4,
@@ -61,8 +85,6 @@ public class AddNewController {
         catch (NullPointerException e){
             warningLabel.setText("Please select the necessary items :)");
         }
-
-
 
         /*System.out.println(examTypeString);
         System.out.println(semesterString);
