@@ -12,6 +12,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -81,6 +82,12 @@ public class AddNewController {
                 try {
                     BorderPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("exam_scene.fxml")));
                     Stage stage = new Stage();
+
+                    // change window icon here
+                    Image icon = new Image("pencils.png");
+
+                    stage.setTitle(examLabel);
+                    stage.getIcons().add(icon);
                     stage.setScene(new Scene(pane));
                     stage.show();
                 } catch (IOException ex) {

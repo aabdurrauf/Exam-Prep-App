@@ -2,6 +2,7 @@ package com.example.finalstudymanagementsystem;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,8 +18,10 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ExamStageController implements Initializable {
@@ -138,8 +141,20 @@ public class ExamStageController implements Initializable {
         editLabelStage.setResizable(false);
     }
 
-    public void addCourse(ActionEvent actionEvent) {
+    private static final Stage addNewCourse = new Stage();
+    public static Stage getAddNewCourse(){
+        return addNewCourse;
+    }
+    public void addCourse(ActionEvent actionEvent) throws IOException {
         // pop up new stage to add nwe course
+        AnchorPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("add_new_course.fxml")));
+        Image icon = new Image("book.png");
+
+        addNewCourse.setTitle("Add Course");
+        addNewCourse.setScene(new Scene(pane));
+        addNewCourse.getIcons().add(icon);
+        addNewCourse.show();
+        addNewCourse.setResizable(false);
 
         /*Label courseName = new Label("Course Name");
         Label teacher = new Label("Teacher");

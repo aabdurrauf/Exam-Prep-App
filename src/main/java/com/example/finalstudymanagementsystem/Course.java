@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Course {
-    private final String courseName;
-    private final String place;
-    private final LocalTime time;
-    private final LocalDate date;
+    private String courseName;
+    private String place;
+    private LocalTime time;
+    private LocalDate date;
     private int preparation = 0;
-    private final int credit;
-    private final ArrayList<File> studyFiles = new ArrayList<>();
+    private int credit;
+    private ArrayList<File> studyFiles = new ArrayList<>();
 
     Course(String courseName, String place, LocalTime time, LocalDate date,  int credit){
         this.courseName = courseName;
@@ -21,6 +21,10 @@ public class Course {
         this.time = time;
         this.date = date;
         this.credit = credit;
+    }
+
+    Course(String courseName){
+        this.courseName = courseName;
     }
 
     public String getCourseName(){
