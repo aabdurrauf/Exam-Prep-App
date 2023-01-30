@@ -7,10 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -49,15 +46,18 @@ public class ExamStageController implements Initializable {
 
         Label examSchedule = new Label("Exam Schedule");
         setLabelStyle(examSchedule);
+        examSchedule.setOnMouseClicked(e -> System.out.println("examSchedule clicked") /* opening the center scene */);
 
         Label studySchedule = new Label("Study Schedule");
         setLabelStyle(studySchedule);
+        studySchedule.setOnMouseClicked(e -> System.out.println("studySchedule clicked") /* opening the center scene */);
 
         Label examMaterialsLabel = new Label("Exam Materials");
         setLabelStyle(examMaterialsLabel);
 
         Label examResults = new Label("Exam Results");
         setLabelStyle(examResults);
+        examResults.setOnMouseClicked(e -> System.out.println("examResults clicked") /* opening the center scene */);
 
         vbox.getChildren().addAll(examSchedule, studySchedule, examMaterialsLabel);
 
@@ -138,7 +138,23 @@ public class ExamStageController implements Initializable {
         editLabelStage.setResizable(false);
     }
 
-    public void addNew(ActionEvent actionEvent) {
+    public void addCourse(ActionEvent actionEvent) {
+        // pop up new stage to add nwe course
+
+        /*Label courseName = new Label("Course Name");
+        Label teacher = new Label("Teacher");
+        Label credit = new Label("Credit");
+        Label examPlace = new Label("Exam Place");
+        Label examDate = new Label("Exam Date");
+        Label examTime = new Label("Exam Time");
+
+        TextField courseNameTF = new TextField();
+        TextField teacherTF = new TextField();
+        TextField creditTF = new TextField();
+        TextField examPlaceTF = new TextField();
+        DatePicker examDatePicker = new DatePicker();
+        DatePicker examTimeDate = new DatePicker();
+        //examTimeDate.*/
     }
 
     public void delete(ActionEvent actionEvent) {

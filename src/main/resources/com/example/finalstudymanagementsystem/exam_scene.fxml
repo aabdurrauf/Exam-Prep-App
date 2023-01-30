@@ -46,7 +46,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
-                        <Button fx:id="addNewButton" mnemonicParsing="false" onAction="#addNew" stylesheets="@styles.css" text="Add Course">
+                        <Button fx:id="addNewButton" mnemonicParsing="false" onAction="#addCourse" stylesheets="@styles.css" text="Add Course">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
