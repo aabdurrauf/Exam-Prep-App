@@ -25,10 +25,18 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ExamStageController implements Initializable {
+    private static int examStageNumber = 0;
+    public static void setExamStageNumber(int n){
+        examStageNumber = n;
+    }
     @FXML
     AnchorPane menuLeftPane;
     // this ArrayList can be initialized or can be added new course later
-    ArrayList<String> examMaterialsList = new ArrayList<>();
+    private static ArrayList<String> examMaterialsList = new ArrayList<>();
+    private static ArrayList<Course> courseArrayList = new ArrayList<>();
+    public static ArrayList<Course> getCourseArrayList() {
+        return courseArrayList;
+    }
 
     private static void setLabelStyle(Label label){
         Font font = Font.font("System", FontWeight.NORMAL, FontPosture.REGULAR, 16);
@@ -43,8 +51,11 @@ public class ExamStageController implements Initializable {
         label.setOnMouseExited(e -> label.setStyle("-fx-background-color: #EAE0D5"));
     }
 
+    @FXML Label Label1;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Label1.setText(AddNewController.getExams().get(examStageNumber).getExamLabel());
+
         VBox vbox = new VBox();
 
         Label examSchedule = new Label("Exam Schedule");
@@ -85,7 +96,7 @@ public class ExamStageController implements Initializable {
     }
 
     private static final Stage editLabelStage = new Stage();
-    @FXML Label Label1;
+    //@FXML Label Label1;
     public void editLabel(MouseEvent mouseEvent) {
         Image icon = new Image("pencils.png");
         AnchorPane pane = new AnchorPane();

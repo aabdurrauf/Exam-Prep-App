@@ -2,20 +2,19 @@ package com.example.finalstudymanagementsystem;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Course {
     private String courseName;
     private String place;
-    private LocalTime time;
+    private String time;
     private LocalDate date;
     private int preparation = 0;
     private int credit;
     private ArrayList<File> studyFiles = new ArrayList<>();
 
-    Course(String courseName, String place, LocalTime time, LocalDate date,  int credit){
+    Course(String courseName, String place, String time, LocalDate date,  int credit){
         this.courseName = courseName;
         this.place = place;
         this.time = time;
@@ -33,7 +32,7 @@ public class Course {
     public String getPlace(){
         return place;
     }
-    public LocalTime getTime(){
+    public String getTime(){
         return time;
     }
     public LocalDate getDate(){

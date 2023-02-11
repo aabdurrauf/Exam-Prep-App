@@ -1,6 +1,5 @@
 package com.example.finalstudymanagementsystem;
 
-import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -14,7 +13,7 @@ import javafx.scene.text.FontWeight;
 
 import java.util.ArrayList;
 
-public class ExamPaneController extends AnchorPane {
+public class ExamPaneBuilder extends AnchorPane {
     private VBox vbox = new VBox();
     private GridPane grid = new GridPane();
     private Label status = new Label();
@@ -30,8 +29,10 @@ public class ExamPaneController extends AnchorPane {
     private Font font2 = Font.font("System", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 12);
     private Font font3 = Font.font("System", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10);
     private Font font4 = Font.font("System", FontWeight.LIGHT, FontPosture.ITALIC, 10);
+    private ExamStageBuilder examStage;
 
-    ExamPaneController(String examText, String dateText, String descriptionText){
+    ExamPaneBuilder(String examText, String dateText, String descriptionText){
+        examStage = new ExamStageBuilder(examText, dateText);
         status.setText("In Prep");
         status.setFont(font1);
         statusIcon.setImage(new Image("load.png", 12, 12, true, true));
@@ -59,6 +60,10 @@ public class ExamPaneController extends AnchorPane {
         vbox.setPrefSize(120, 160);
 
         getChildren().add(vbox);
+    }
+
+    public ExamStageBuilder getExamStage(){
+        return examStage;
     }
 
     public void setStatus(String statusText){

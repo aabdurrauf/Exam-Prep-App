@@ -1,5 +1,6 @@
 package com.example.finalstudymanagementsystem;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +12,7 @@ public class Exam {
     private final LocalDate examDateEnd;
     private final ArrayList<Course> courses = new ArrayList<>();
 
-    Exam(String examType, String examSemester, LocalDate examDateStart, LocalDate examDateEnd){
+    Exam(String examType, String examSemester, LocalDate examDateStart, LocalDate examDateEnd) {
         this.examType = examType;
         this.examSemester = examSemester;
         this.examDateStart = examDateStart;
@@ -32,6 +33,9 @@ public class Exam {
     }
     public ArrayList<Course> getCourses(){
         return courses;
+    }
+    public String getExamLabel(){
+        return examType + " " + examSemester;
     }
 
     public void addCourse(Course course){

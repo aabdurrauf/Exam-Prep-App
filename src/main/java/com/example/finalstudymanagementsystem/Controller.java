@@ -29,13 +29,13 @@ import java.util.Objects;
 public class Controller {
     private static final Stage addNewStage = new Stage();
     private static final Stage editLabelStage = new Stage();
-    private static ArrayList<ExamPaneController> ExamPanesArrayList = new ArrayList<>();
+    private static ArrayList<ExamPaneBuilder> ExamPanesArrayList = new ArrayList<>();
 
 
     public static Stage getAddNewStage() {
         return addNewStage;
     }
-    public static ArrayList<ExamPaneController> getExamPanesArrayList() {
+    public static ArrayList<ExamPaneBuilder> getExamPanesArrayList() {
         return ExamPanesArrayList;
     }
 

@@ -32,6 +32,7 @@ public class AddNewController {
     @FXML private Label warningLabel = new Label();
 
     private static ArrayList<Exam> exams = new ArrayList<>();
+
     public static void addExam(Exam exam){
         exams.add(exam);
     }
@@ -71,30 +72,32 @@ public class AddNewController {
             Exam exam = new Exam(examTypeString, semesterString, startDateValue, endDateValue);
             addExam(exam);
 
-            ExamPaneController examPane = new ExamPaneController(examLabel, dateText, descriptionText);
+            ExamPaneBuilder examPane = new ExamPaneBuilder(examLabel, dateText, descriptionText);
             // set mouse action to the Exam Pane
             examPane.setCursor(Cursor.HAND);
             examPane.setOnMouseClicked(e -> {
-                // the opening new stage or scene will be coded here
-                System.out.println(examLabel + " clicked");
+                try {// the opening new stage or scene will be coded here
+                    System.out.println(examLabel + " clicked");
 
-                // testing
-                try {
-                    BorderPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("exam_scene.fxml")));
+                    // testing
+                    // make a new independent exam scene page for each exam pane
+                    //ExamStageBuilder examStage = new ExamStageBuilder(examLabel, dateText);
+                    //BorderPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("exam_scene.fxml")));
+                    // set up the Label text // still get problem here :)))
+                    //ExamStageController.setExamStageNumber(exams.indexOf(exam)); // hope this solve the problem
+
                     Stage stage = new Stage();
-
-                    // change window icon here
                     Image icon = new Image("pencils.png");
-
                     stage.setTitle(examLabel);
                     stage.getIcons().add(icon);
-                    stage.setScene(new Scene(pane));
+                    stage.setScene(new Scene(examPane.getExamStage()));
                     stage.show();
-                } catch (IOException ex) {
-                    System.out.println("error ");
-                    ex.printStackTrace();
+                    stage.setResizable(false);
+                    // end of test
                 }
-                // end of test
+                catch (IllegalArgumentException ex){
+                    System.out.println("the stage already opened");
+                }
             });
             // set effect to the Exam Pane
             DropShadow ds = new DropShadow();
@@ -118,8 +121,8 @@ public class AddNewController {
         }
         catch (NullPointerException e){
             warningLabel.setText("Please select the necessary items :)");
+            e.printStackTrace();
         }
-
         /*System.out.println(examTypeString);
         System.out.println(semesterString);
         System.out.println(startDateString);

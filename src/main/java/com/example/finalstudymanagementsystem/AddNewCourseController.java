@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,42 +21,55 @@ public class AddNewCourseController {
     @FXML TextField examPlace;
     @FXML TextField examTime;
     @FXML DatePicker examDate;
-    @FXML ListView materialsList;
+    @FXML ListView<String> materialsList;
     @FXML Label warningLabel;
 
     public void addButton(ActionEvent actionEvent) {
-        String courseNameString;
+        String courseNameString = null;
         if (!courseName.getText().isBlank()){
             courseNameString = courseName.getText();
         }
         else {
             warningLabel.setText("Please enter a valid course name");
         }
-        int creditInt;
+        int creditInt = 0;
         try{
             creditInt = Integer.parseInt(credit.getText());
         }
         catch (NumberFormatException e) {
             warningLabel.setText("Please enter a valid credit value");
         }
-        String teacherString;
+        String teacherString = null;
         if (!teacher.getText().isBlank()){
             teacherString = teacher.getText();
         }
-        String examPlaceString;
+        String examPlaceString = null;
         if (!examPlace.getText().isBlank()){
             examPlaceString = examPlace.getText();
         }
-        String examTimeString;
+        String examTimeString = null;
         if (!examTime.getText().isBlank()){
             examTimeString = examTime.getText();
         }
-        LocalDate examDateLD;
-        if (!examDate.getValue().toString().isBlank()){
+        LocalDate examDateLD = null;
+        try{
             examDateLD = examDate.getValue();
         }
+        catch (Exception e){
+            System.out.println("date isn't picked");
+        }
+        ArrayList<String> materialsArrayList;
         try {
-            ArrayList<String> materialsArrayList = new ArrayList<String>((Collection<? extends String>) materialsList);
+            // list of materials from this course
+            // later will be added to Exam Materials section in Exam Stage
+            materialsArrayList = new ArrayList<>((Collection<String>) materialsList);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        try{
+            Course course = new Course(courseNameString, examPlaceString, examTimeString, examDateLD, creditInt);
+            ExamStageController.getCourseArrayList().add(course);
         }
         catch (Exception e){
             e.printStackTrace();
