@@ -73,32 +73,9 @@ public class AddNewController {
             addExam(exam);
 
             ExamPaneBuilder examPane = new ExamPaneBuilder(examLabel, dateText, descriptionText);
-            // set mouse action to the Exam Pane
+            // set mouse cursor
             examPane.setCursor(Cursor.HAND);
-            examPane.setOnMouseClicked(e -> {
-                try {// the opening new stage or scene will be coded here
-                    System.out.println(examLabel + " clicked");
 
-                    // testing
-                    // make a new independent exam scene page for each exam pane
-                    //ExamStageBuilder examStage = new ExamStageBuilder(examLabel, dateText);
-                    //BorderPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("exam_scene.fxml")));
-                    // set up the Label text // still get problem here :)))
-                    //ExamStageController.setExamStageNumber(exams.indexOf(exam)); // hope this solve the problem
-
-                    Stage stage = new Stage();
-                    Image icon = new Image("pencils.png");
-                    stage.setTitle(examLabel);
-                    stage.getIcons().add(icon);
-                    stage.setScene(new Scene(examPane.getExamStage()));
-                    stage.show();
-                    stage.setResizable(false);
-                    // end of test
-                }
-                catch (IllegalArgumentException ex){
-                    System.out.println("the stage already opened");
-                }
-            });
             // set effect to the Exam Pane
             DropShadow ds = new DropShadow();
             ds.setHeight(0);

@@ -25,7 +25,7 @@ public class AddNewCourseController {
     @FXML Label warningLabel;
 
     public void addButton(ActionEvent actionEvent) {
-        String courseNameString = null;
+        /*String courseNameString = null;
         if (!courseName.getText().isBlank()){
             courseNameString = courseName.getText();
         }
@@ -66,14 +66,19 @@ public class AddNewCourseController {
         }
         catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
         try{
-            Course course = new Course(courseNameString, examPlaceString, examTimeString, examDateLD, creditInt);
+            Course course = new Course(courseName.getText(), examPlace.getText(), examTime.getText(),
+                    examDate.getValue(), Integer.parseInt(credit.getText()));
             ExamStageController.getCourseArrayList().add(course);
+        }
+        catch (NumberFormatException e) {
+            warningLabel.setText("Please enter a valid credit value");
         }
         catch (Exception e){
             e.printStackTrace();
         }
+        ExamStageBuilder.getAddNewCourse().close();
     }
 
     public void browseFile(){
@@ -94,7 +99,7 @@ public class AddNewCourseController {
     }
 
     public void cancelButton(ActionEvent actionEvent) {
-        ExamStageController.getAddNewCourse().close();
+        ExamStageBuilder.getAddNewCourse().close();
     }
     /* file chooser:
     https://docs.oracle.com/javase/8/javafx/api/javafx/stage/FileChooser.html*/

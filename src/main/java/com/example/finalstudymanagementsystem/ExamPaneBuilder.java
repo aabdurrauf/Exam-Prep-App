@@ -2,6 +2,7 @@ package com.example.finalstudymanagementsystem;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -60,10 +62,26 @@ public class ExamPaneBuilder extends AnchorPane {
         vbox.setPrefSize(120, 160);
 
         getChildren().add(vbox);
-    }
 
-    public ExamStageBuilder getExamStage(){
-        return examStage;
+        // set mouse action to the pane
+        Stage stage = new Stage();
+        Scene scene = new Scene(examStage);
+        setOnMouseClicked(e -> {
+            try {
+                System.out.println(examText + " clicked");
+
+                Image icon = new Image("pencils.png");
+                stage.setTitle(examText);
+                stage.getIcons().add(icon);
+                stage.setScene(scene);
+                stage.show();
+                stage.setResizable(false);
+                // end of test
+            }
+            catch (IllegalArgumentException ex){
+                System.out.println("the stage already opened");
+            }
+        });
     }
 
     public void setStatus(String statusText){

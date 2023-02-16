@@ -1,5 +1,6 @@
 package com.example.finalstudymanagementsystem;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,7 +21,9 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ExamStageBuilder extends AnchorPane {
     BorderPane root;
@@ -59,6 +62,7 @@ public class ExamStageBuilder extends AnchorPane {
         addCourseButton.setStyle("-fx-background-color: #D9C5AE");
         addCourseButton.setFont(font2);
         addCourseButton.setCursor(Cursor.HAND);
+        addCourseButton.setOnAction(this::addCourse);
         Button deleteButton = new Button("Delete");
         deleteButton.setStyle("-fx-background-color: #D9C5AE");
         deleteButton.setFont(font2);
@@ -179,6 +183,42 @@ public class ExamStageBuilder extends AnchorPane {
         editLabelStage.setScene(scene);
         editLabelStage.show();
         editLabelStage.setResizable(false);
+    }
+
+    private static final Stage addNewCourse = new Stage();
+    public static Stage getAddNewCourse(){
+        return addNewCourse;
+    }
+    public void addCourse(ActionEvent actionEvent) {
+        // pop up new stage to add nwe course
+        AnchorPane pane = null;
+        try {
+            pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("add_new_course.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Image icon = new Image("book.png");
+
+        addNewCourse.setTitle("Add Course");
+        addNewCourse.setScene(new Scene(pane));
+        addNewCourse.getIcons().add(icon);
+        addNewCourse.show();
+        addNewCourse.setResizable(false);
+
+        /*Label courseName = new Label("Course Name");
+        Label teacher = new Label("Teacher");
+        Label credit = new Label("Credit");
+        Label examPlace = new Label("Exam Place");
+        Label examDate = new Label("Exam Date");
+        Label examTime = new Label("Exam Time");
+
+        TextField courseNameTF = new TextField();
+        TextField teacherTF = new TextField();
+        TextField creditTF = new TextField();
+        TextField examPlaceTF = new TextField();
+        DatePicker examDatePicker = new DatePicker();
+        DatePicker examTimeDate = new DatePicker();
+        //examTimeDate.*/
     }
 
     private static void setLabelStyle(Label label){
