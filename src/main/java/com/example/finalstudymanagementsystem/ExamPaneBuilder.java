@@ -24,17 +24,15 @@ public class ExamPaneBuilder extends AnchorPane {
     private Label dateLabel = new Label();
     private Label descriptionLabel = new Label();
     private HBox hbox = new HBox();
-    private ArrayList<Label> courses = new ArrayList<>();
     private Background bg = new Background(new BackgroundFill(Color.rgb(234, 224, 213),
             new CornerRadii(10), new Insets(0)));
     private Font font1 = Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 10);
     private Font font2 = Font.font("System", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 12);
     private Font font3 = Font.font("System", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10);
     private Font font4 = Font.font("System", FontWeight.LIGHT, FontPosture.ITALIC, 10);
-    private ExamStageBuilder examStage;
+    private final ExamStageBuilder examStage;
 
     ExamPaneBuilder(String examText, String dateText, String descriptionText){
-        examStage = new ExamStageBuilder(examText, dateText);
         status.setText("In Prep");
         status.setFont(font1);
         statusIcon.setImage(new Image("load.png", 12, 12, true, true));
@@ -64,8 +62,9 @@ public class ExamPaneBuilder extends AnchorPane {
         getChildren().add(vbox);
 
         // set mouse action to the pane
-        Stage stage = new Stage();
+        examStage = new ExamStageBuilder(examText, dateText);
         Scene scene = new Scene(examStage);
+        Stage stage = new Stage();
         setOnMouseClicked(e -> {
             try {
                 System.out.println(examText + " clicked");
@@ -76,7 +75,6 @@ public class ExamPaneBuilder extends AnchorPane {
                 stage.setScene(scene);
                 stage.show();
                 stage.setResizable(false);
-                // end of test
             }
             catch (IllegalArgumentException ex){
                 System.out.println("the stage already opened");

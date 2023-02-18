@@ -1,10 +1,12 @@
 package com.example.finalstudymanagementsystem;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -32,6 +34,8 @@ public class ExamStageBuilder extends AnchorPane {
     AnchorPane centerPane;
     Label titleLabel = new Label();
     private static ArrayList<String> examMaterialsList = new ArrayList<>();
+    private ArrayList<Course> courses = new ArrayList<>();
+
 
     public ExamStageBuilder(String titleString, String dateString) {
         root = new BorderPane();
@@ -121,7 +125,15 @@ public class ExamStageBuilder extends AnchorPane {
         // center pane
         //centerPane.setPrefWidth(605);
         //centerPane.setPrefHeight(424);
+        centerPane.setStyle("-fx-background-color: #D9C5AE");
         root.setCenter(centerPane);
+        try {
+            centerPane.getChildren().add(UpcomingExamPane());
+            centerPane.getChildren().add(SelectedCourseDetailsPane());
+        }
+        catch (IndexOutOfBoundsException e) {
+            System.out.println("course haven't been added");
+        }
 
         // root
         root.setPrefWidth(879);
@@ -204,21 +216,6 @@ public class ExamStageBuilder extends AnchorPane {
         addNewCourse.getIcons().add(icon);
         addNewCourse.show();
         addNewCourse.setResizable(false);
-
-        /*Label courseName = new Label("Course Name");
-        Label teacher = new Label("Teacher");
-        Label credit = new Label("Credit");
-        Label examPlace = new Label("Exam Place");
-        Label examDate = new Label("Exam Date");
-        Label examTime = new Label("Exam Time");
-
-        TextField courseNameTF = new TextField();
-        TextField teacherTF = new TextField();
-        TextField creditTF = new TextField();
-        TextField examPlaceTF = new TextField();
-        DatePicker examDatePicker = new DatePicker();
-        DatePicker examTimeDate = new DatePicker();
-        //examTimeDate.*/
     }
 
     private static void setLabelStyle(Label label){
@@ -232,5 +229,101 @@ public class ExamStageBuilder extends AnchorPane {
         label.setPadding(new Insets(10));
         label.setOnMouseEntered(e -> label.setStyle("-fx-background-color: #D9C5AE"));
         label.setOnMouseExited(e -> label.setStyle("-fx-background-color: #EAE0D5"));
+    }
+
+    // Upcoming Exams Pane
+    private AnchorPane UpcomingExamPane() {
+        AnchorPane pane = new AnchorPane();
+        VBox vbox = new VBox();
+        Label title = new Label();
+        Label upcomingCourse = new Label();
+        Label placeLabel = new Label();
+        Label dateLabel = new Label();
+        //ArrayList<Label> courses = new ArrayList<>();
+        Background bg = new Background(new BackgroundFill(Color.rgb(234, 224, 213),
+                new CornerRadii(15), new Insets(0)));
+        Font font1 = Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 25);
+        Font font2 = Font.font("System", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 15);
+        Font font3 = Font.font("System", FontWeight.LIGHT, FontPosture.REGULAR, 11);
+        title.setText("Upcoming Exam");
+        title.setFont(font1);
+        //upcomingCourse.setText(courses.get(0).getCourseName());
+        upcomingCourse.setText("Linear Algebra");
+        upcomingCourse.setFont(font2);
+        //placeLabel.setText(courses.get(0).getPlace());
+        placeLabel.setText("T4 Z06");
+        placeLabel.setFont(font3);
+        //dateLabel.setText(courses.get(0).getDate() + " - " + courses.get(0).getTime());
+        dateLabel.setText("Tue 12/02/2023 - 12.00");
+        dateLabel.setFont(font3);
+        vbox.getChildren().addAll(title, upcomingCourse, placeLabel, dateLabel);
+        vbox.setSpacing(2);
+        vbox.setBackground(bg);
+        vbox.setPadding(new Insets(10));
+        vbox.setPrefSize(230, 100);
+        vbox.setPadding(new Insets(15));
+        vbox.setLayoutX(10);
+        vbox.setLayoutY(10);
+        pane.getChildren().add(vbox);
+
+        return pane;
+    }
+
+    private AnchorPane SelectedCourseDetailsPane() {
+        AnchorPane pane = new AnchorPane();
+        VBox vbox = new VBox();
+        Label courseName = new Label();
+        Label placeLabel = new Label();
+        Label dateLabel = new Label();
+        Label courseDetailsLabel = new Label();
+        Label teacherName = new Label();
+        Label creditsLabel = new Label();
+        //ArrayList<Label> courses = new ArrayList<>();
+        Background bg = new Background(new BackgroundFill(Color.rgb(234, 224, 213),
+                new CornerRadii(15), new Insets(0)));
+        Font font1 = Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 20);
+        Font font2 = Font.font("System", FontWeight.LIGHT, FontPosture.REGULAR, 11);
+        //courseName.setText(courses.get(0).getCourseName());
+        courseName.setText("Linear Algebra");
+        courseName.setFont(font1);
+        //placeLabel.setText(courses.get(0).getPlace());
+        placeLabel.setText("T4 Z06");
+        placeLabel.setFont(font2);
+        //dateLabel.setText(courses.get(0).getDate() + " - " + courses.get(0).getTime());
+        dateLabel.setText("Tue 12/02/2023 - 12.00");
+        dateLabel.setFont(font2);
+        courseDetailsLabel.setText("Course Details");
+        courseDetailsLabel.setFont(font1);
+        teacherName.setText("Prof. Dr. Ammar Abdurrauf");
+        teacherName.setFont(font2);
+        creditsLabel.setText("6 Credits");
+        creditsLabel.setFont(font2);
+
+        vbox.getChildren().addAll(courseName, placeLabel, dateLabel, courseDetailsLabel, teacherName, creditsLabel);
+        vbox.setSpacing(2);
+        vbox.setBackground(bg);
+        vbox.setPadding(new Insets(10));
+        vbox.setPrefSize(230, 260);
+        vbox.setPadding(new Insets(15));
+        vbox.setLayoutX(10);
+        vbox.setLayoutY(150);
+        pane.getChildren().add(vbox);
+
+        return pane;
+    }
+}
+
+class Test extends Application {
+    @Override
+    public void start(Stage primaryStage) {
+        ExamStageBuilder root = new ExamStageBuilder("Exam", "Test");
+        primaryStage.setTitle("Exam Study Manager");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+        primaryStage.setResizable(false);
+    }
+
+    public static void main(String[] args) {
+        launch();
     }
 }
